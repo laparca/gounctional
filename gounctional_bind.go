@@ -1,6 +1,5 @@
 package gounctional
 
-
 // Bind1Of1 binds the first 1 arguments of the function f.
 func Bind1Of1[T0 any, R any](f func(T0) R, arg0 T0) func() R {
 	return func() R {

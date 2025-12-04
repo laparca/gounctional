@@ -184,7 +184,7 @@ func TestLessThanFunc(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			fn := LessThanFunc(5)  // Use consistent comparison value
+			fn := LessThanFunc(5) // Use consistent comparison value
 			result := fn(tt.input)
 			if result != tt.expected {
 				t.Errorf("LessThanFunc(5)(%v) = %v, want %v", tt.input, result, tt.expected)

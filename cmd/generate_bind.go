@@ -37,14 +37,23 @@ func main() {
 	}
 
 	writer := bufio.NewWriter(file)
-	writer.WriteString("package " + *packageName + "\n\n")
+	if _, err := writer.WriteString("package " + *packageName + "\n\n"); err != nil {
+		fmt.Println("Error writing to file:", err)
+		return
+	}
 
 	for numArgs := *startArgs; numArgs <= *endArgs; numArgs++ {
 		for numBindedArgs := 1; numBindedArgs <= numArgs; numBindedArgs++ {
-			writer.WriteString(generateBindFunctionFor(numArgs, numBindedArgs))
+			if _, err := writer.WriteString(generateBindFunctionFor(numArgs, numBindedArgs)); err != nil {
+				fmt.Println("Error writing to file:", err)
+				return
+			}
 		}
 	}
-	writer.Flush()
+	if err := writer.Flush(); err != nil {
+		fmt.Println("Error flushing file:", err)
+		return
+	}
 }
 
 func generateBindFunctionFor(funcArgs, argsToBind int) string {
