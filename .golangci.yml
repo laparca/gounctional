@@ -8,7 +8,7 @@ linters:
     - staticcheck
     - gocritic
     - gosec
-    - gofmt
+#    - gofmt
     - goimports
     - errcheck
     - gosimple
