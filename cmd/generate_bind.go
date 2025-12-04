@@ -33,7 +33,11 @@ func main() {
 			fmt.Println("Error creating file:", err)
 			return
 		}
-		defer file.Close()
+		defer func() {
+			if err := file.Close(); err != nil {
+				fmt.Println("Error closing file:", err)
+			}
+		}()
 	}
 
 	writer := bufio.NewWriter(file)
