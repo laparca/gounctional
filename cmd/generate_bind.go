@@ -12,13 +12,15 @@
 // - Bind3Of3 fixes all 3 arguments of a 3-argument function, returning a 0-argument function
 //
 // Usage:
-//   go run generate_bind.go -s 1 -e 10 -o gounctional_bind.go
+//
+//	go run generate_bind.go -s 1 -e 10 -o gounctional_bind.go
 //
 // Flags:
-//   -s: Starting number of arguments (default 1)
-//   -e: Ending number of arguments (default 1)
-//   -o: Output file (required)
-//   -p: Package name (default "gounctional")
+//
+//	-s: Starting number of arguments (default 1)
+//	-e: Ending number of arguments (default 1)
+//	-o: Output file (required)
+//	-p: Package name (default "gounctional")
 package main
 
 import (
