@@ -4,17 +4,19 @@ run:
 
 linters:
   enable:
-    - gofmt
-    - golint
     - govet
-    - errcheck
     - staticcheck
-    - unused
+    - gocritic
+    - gosec
+    - gofmt
+    - goimports
+    - errcheck
     - gosimple
-    - structcheck
-    - varcheck
-    - ineffassign
-    - deadcode
+    - unused
+    - unconvert
+    - goconst
+    - gocyclo
+    - revive
 
 linters-settings:
   golint:
