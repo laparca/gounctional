@@ -66,7 +66,7 @@ The interface should return:
 ### Identity and Utility Functions
 
 - `NotFunc() func(bool) bool`: Returns a function that negates a boolean value
-- `IdFunc[T any]() func(T) T`: Returns the identity function that returns its input unchanged
+- `IDFunc[T any]() func(T) T`: Returns the identity function that returns its input unchanged
 - `EqualFunc[T comparable](value T) func(T) bool`: Returns a function that checks if a value is equal to the given value
 - `DifferentFunc[T comparable](value T) func(T) bool`: Returns a function that checks if a value is different from the given value
 
@@ -122,7 +122,7 @@ import (
 
 func main() {
     // Identity function
-    id := gounctional.IdFunc[int]()
+    id := gounctional.IDFunc[int]()
     fmt.Println(id(42)) // Output: 42
 
     // Not function

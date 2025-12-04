@@ -18,15 +18,15 @@ func NotFunc() func(bool) bool {
 	}
 }
 
-// IdFunc returns the identity function that returns its input unchanged.
+// IDFunc returns the identity function that returns its input unchanged.
 //
 // Example:
 //
-//	id := gounctional.IdFunc[int]()
+//	id := gounctional.IDFunc[int]()
 //	result := id(42)  // 42
-//	idStr := gounctional.IdFunc[string]()
+//	idStr := gounctional.IDFunc[string]()
 //	resultStr := idStr("hello")  // "hello"
-func IdFunc[T any]() func(T) T {
+func IDFunc[T any]() func(T) T {
 	return func(value T) T {
 		return value
 	}
@@ -327,6 +327,19 @@ func Compose[T any, U any, R any](f func(T) U, g func(U) R) func(T) R {
 	}
 }
 
+// Iff returns a conditional function that executes one of two functions based on a predicate.
+// If the predicate function returns true, it executes the 'a' function and returns its result.
+// Otherwise, it executes the 'b' function and returns its result.
+//
+// Example:
+//
+//	isPositive := func(x int) bool { return x > 0 }
+//	getPositiveMsg := func() string { return "positive" }
+//	getNegativeMsg := func() string { return "negative or zero" }
+//	conditionalMsg := gounctional.Iff(isPositive, getPositiveMsg, getNegativeMsg)
+//
+//	result1 := conditionalMsg(5)   // "positive"
+//	result2 := conditionalMsg(-3)  // "negative or zero"
 func Iff[T any, R any](f func(T) bool, a func() R, b func() R) func(T) R {
 	return func(t T) R {
 		if f(t) {
@@ -336,6 +349,16 @@ func Iff[T any, R any](f func(T) bool, a func() R, b func() R) func(T) R {
 	}
 }
 
+// Split returns a function that applies two given functions to the same input and returns both results as a tuple.
+// This is useful for applying multiple transformations to the same value simultaneously.
+//
+// Example:
+//
+//	square := func(x int) int { return x * x }
+//	double := func(x int) int { return x * 2 }
+//	splitFunc := gounctional.Split(square, double)
+//
+//	sq, dbl := splitFunc(5)  // sq = 25, dbl = 10
 func Split[T any, R1 any, R2 any](f func(T) R1, g func(T) R2) func(T) (R1, R2) {
 	return func(t T) (R1, R2) {
 		return f(t), g(t)

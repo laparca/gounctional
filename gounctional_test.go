@@ -23,10 +23,10 @@ func TestNotFunc(t *testing.T) {
 	}
 }
 
-// TestIdFunc tests the IdFunc function
-func TestIdFunc(t *testing.T) {
-	intFn := IdFunc[int]()
-	strFn := IdFunc[string]()
+// TestIDFunc tests the IDFunc function
+func TestIDFunc(t *testing.T) {
+	intFn := IDFunc[int]()
+	strFn := IDFunc[string]()
 
 	tests := []struct {
 		name     string
@@ -52,12 +52,12 @@ func TestIdFunc(t *testing.T) {
 			if tt.name == "integer identity" {
 				result := intFn(tt.intInput)
 				if result != tt.intWant {
-					t.Errorf("IdFunc[int()](%v) = %v, want %v", tt.intInput, result, tt.intWant)
+					t.Errorf("IDFunc[int()](%v) = %v, want %v", tt.intInput, result, tt.intWant)
 				}
 			} else if tt.name == "string identity" {
 				result := strFn(tt.strInput)
 				if result != tt.strWant {
-					t.Errorf("IdFunc[string()](%v) = %v, want %v", tt.strInput, result, tt.strWant)
+					t.Errorf("IDFunc[string()](%v) = %v, want %v", tt.strInput, result, tt.strWant)
 				}
 			}
 		})

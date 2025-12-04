@@ -1,3 +1,24 @@
+// Package main implements a code generation tool for the gounctional library.
+//
+// This command-line application generates generic binding functions for the gounctional package.
+// Binding functions allow partial application of multi-argument functions by fixing some
+// of their arguments, returning a new function with fewer parameters.
+//
+// The tool generates functions from Bind1OfN to BindNOfN for any number of arguments N,
+// where each BindXOfY function binds the first X arguments of a Y-argument function.
+// For example:
+// - Bind1Of3 fixes the first argument of a 3-argument function, returning a 2-argument function
+// - Bind2Of3 fixes the first 2 arguments of a 3-argument function, returning a 1-argument function
+// - Bind3Of3 fixes all 3 arguments of a 3-argument function, returning a 0-argument function
+//
+// Usage:
+//   go run generate_bind.go -s 1 -e 10 -o gounctional_bind.go
+//
+// Flags:
+//   -s: Starting number of arguments (default 1)
+//   -e: Ending number of arguments (default 1)
+//   -o: Output file (required)
+//   -p: Package name (default "gounctional")
 package main
 
 import (
